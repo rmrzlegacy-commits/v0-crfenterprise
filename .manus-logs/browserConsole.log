@@ -106,3 +106,10 @@
 [2026-05-19T23:30:52.400Z] {"timestamp":1779233450394,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-05-19T23:30:52.400Z] {"timestamp":1779233450431,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-05-19T23:30:52.400Z] {"timestamp":1779233450575,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
+[2026-05-19T23:31:22.395Z] {"timestamp":1779233480961,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-19T23:31:22.396Z] {"timestamp":1779233480961,"level":"DEBUG","args":["[vite]","hot updated: /src/components/CertificationsHeader.tsx"],"stack":null}
+[2026-05-19T23:31:23.602Z] {"timestamp":1779233479771,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-19T23:31:23.602Z] {"timestamp":1779233479771,"level":"DEBUG","args":["[vite]","hot updated: /src/components/CertificationsHeader.tsx"],"stack":null}
+[2026-05-19T23:31:31.539Z] {"timestamp":1779233489538,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:31:31.540Z] {"timestamp":1779233489564,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:31:31.540Z] {"timestamp":1779233489647,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
