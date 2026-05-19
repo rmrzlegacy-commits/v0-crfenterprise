@@ -16,10 +16,9 @@ export default function Hero() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage:
-            "url('/manus-storage/crf-hero-provided_47d39428.png')",
+          backgroundImage: "url('/hero-background.jpg')",
           backgroundSize: "cover",
-          backgroundPosition: "center bottom",
+          backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
       />

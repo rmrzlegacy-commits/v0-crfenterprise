@@ -15,3 +15,14 @@
 [2026-05-19T21:27:52.509Z] {"timestamp":1779226070506,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-05-19T21:27:52.509Z] {"timestamp":1779226070637,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-05-19T21:27:52.509Z] {"timestamp":1779226070812,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
+[2026-05-19T23:11:38.432Z] {"timestamp":1779232294298,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:11:38.432Z] {"timestamp":1779232294856,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:11:58.687Z] {"timestamp":1779232314512,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:11:58.687Z] {"timestamp":1779232314862,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:12:02.175Z] {"timestamp":1779232317999,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:12:02.175Z] {"timestamp":1779232318339,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:17:30.814Z] {"timestamp":1779232646756,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-19T23:17:30.814Z] {"timestamp":1779232646757,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Hero.tsx"],"stack":null}
+[2026-05-19T23:17:54.760Z] {"timestamp":1779232672757,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:17:54.760Z] {"timestamp":1779232672774,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:17:54.760Z] {"timestamp":1779232673455,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
