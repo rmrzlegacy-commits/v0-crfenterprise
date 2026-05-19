@@ -26,3 +26,10 @@
 [2026-05-19T23:17:54.760Z] {"timestamp":1779232672757,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-05-19T23:17:54.760Z] {"timestamp":1779232672774,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-05-19T23:17:54.760Z] {"timestamp":1779232673455,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
+[2026-05-19T23:20:50.759Z] {"timestamp":1779232850568,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-19T23:20:50.759Z] {"timestamp":1779232850569,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Hero.tsx"],"stack":null}
+[2026-05-19T23:20:52.218Z] {"timestamp":1779232849327,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-19T23:20:52.218Z] {"timestamp":1779232849327,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Hero.tsx"],"stack":null}
+[2026-05-19T23:20:59.976Z] {"timestamp":1779232857975,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-19T23:20:59.976Z] {"timestamp":1779232858021,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-19T23:20:59.976Z] {"timestamp":1779232858073,"level":"INFO","args":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"],"stack":null}
