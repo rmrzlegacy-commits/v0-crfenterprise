@@ -232,6 +232,7 @@ export default defineConfig({
       ".manusvm.computer",
       "localhost",
       "127.0.0.1",
+      "sb-3adwfyqrjfv7.vercel.run",
     ],
     fs: {
       strict: true,
