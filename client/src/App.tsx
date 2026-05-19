@@ -66,8 +66,8 @@ function App() {
         <Toaster />
         <LeadMagnetModal />
         <div className="bg-background text-foreground min-h-screen flex flex-col">
-          <CertificationsHeader />
           <Navbar />
+          <CertificationsHeader />
           <main className="flex-1">
             <Router />
           </main>

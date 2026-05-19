@@ -31,7 +31,7 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-10 left-0 right-0 z-50 backdrop-blur-xl border-b"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b"
       style={{
         background: "rgba(255, 255, 255, 0.1)",
         borderColor: "rgba(255, 255, 255, 0.2)",

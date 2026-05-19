@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40 px-4 md:px-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 md:pt-48 px-4 md:px-0"
     >
       {/* Background Image with Dark Overlay */}
       <div

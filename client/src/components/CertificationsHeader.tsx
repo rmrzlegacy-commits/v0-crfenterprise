@@ -13,8 +13,8 @@ export default function CertificationsHeader() {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-black via-black to-black border-b"
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-black via-black to-black border-b"
       style={{
         borderColor: "rgba(212, 175, 55, 0.3)",
         backdropFilter: "blur(10px)",
