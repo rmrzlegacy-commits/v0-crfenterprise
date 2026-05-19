@@ -20,7 +20,6 @@ export default function Navbar() {
       { label: "Press", href: "/company/press" },
     ]},
     { label: "Legal", href: "#legal", submenu: [
-      { label: "Privacy Policy", href: "/legal/privacy" },
       { label: "Terms of Service", href: "/legal/terms" },
       { label: "Security", href: "/legal/security" },
       { label: "Compliance", href: "/legal/compliance" },
