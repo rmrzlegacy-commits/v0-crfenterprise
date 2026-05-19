@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Route, Switch } from "wouter";
+import CertificationsHeader from "./components/CertificationsHeader";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -65,6 +66,7 @@ function App() {
         <Toaster />
         <LeadMagnetModal />
         <div className="bg-background text-foreground min-h-screen flex flex-col">
+          <CertificationsHeader />
           <Navbar />
           <main className="flex-1">
             <Router />
