@@ -116,3 +116,5 @@
 [2026-05-19T23:35:08.762Z] {"timestamp":1779233705879,"level":"LOG","args":["[vite] server connection lost. Polling for restart..."],"stack":null}
 [2026-05-19T23:35:12.775Z] {"timestamp":1779233708080,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-05-19T23:35:12.775Z] {"timestamp":1779233708166,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-20T00:35:02.939Z] {"timestamp":1779237298599,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-20T00:35:02.939Z] {"timestamp":1779237300040,"level":"DEBUG","args":["[vite] connected."],"stack":null}
