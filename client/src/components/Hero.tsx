@@ -122,7 +122,7 @@ export default function Hero() {
           style={{ fontFamily: "'Sora', sans-serif" }}
         >
           <span className="block text-white font-black" style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: "1.08", letterSpacing: "-0.03em" }}>
-            Build Tomorrow.
+            Mission-Ready Technology
           </span>
           <span
             className="block font-black"
@@ -136,7 +136,7 @@ export default function Hero() {
               backgroundClip: "text",
             }}
           >
-            Serve Today.
+            For Government & Enterprise
           </span>
         </motion.h1>
 
@@ -148,9 +148,9 @@ export default function Hero() {
           className="text-pretty max-w-2xl text-lg md:text-xl leading-relaxed mb-10"
           style={{ color: "rgba(240,240,245,0.72)" }}
         >
-          CRF Enterprise delivers secure, scalable software and infrastructure
-          solutions engineered for the demands of government agencies and
-          enterprise clients.
+          Secure digital infrastructure, automation systems, and scalable technology
+          solutions built for organizations that cannot afford downtime. SAM-registered,
+          MWBE-certified, and contract-ready.
         </motion.p>
 
         {/* CTA row */}
@@ -164,14 +164,14 @@ export default function Hero() {
             onClick={scrollToContact}
             className="btn-primary px-7 py-3.5 text-base"
           >
-            Start a Project
+            Request Capability Statement
             <ArrowRight size={18} />
           </button>
           <button
             onClick={scrollToServices}
             className="btn-secondary px-7 py-3.5 text-base"
           >
-            Explore Services
+            Explore Solutions
           </button>
         </motion.div>
 
