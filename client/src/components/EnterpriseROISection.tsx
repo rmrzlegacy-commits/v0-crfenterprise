@@ -59,7 +59,7 @@ const differentiators = [
 export default function EnterpriseROISection() {
   return (
     <section
-      className="relative py-20 md:py-28 px-5 sm:px-8 lg:px-12"
+      className="relative section-alt py-20 md:py-28 px-5 sm:px-8 lg:px-12"
       aria-labelledby="roi-heading"
       style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
@@ -125,8 +125,8 @@ export default function EnterpriseROISection() {
                 <Icon size={17} style={{ color }} aria-hidden="true" />
               </div>
               <div
-                className="text-3xl font-black"
-                style={{ fontFamily: "'Sora', sans-serif", color: "var(--foreground)", letterSpacing: "-0.03em" }}
+                className="metric-number"
+                style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
               >
                 {value}
               </div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, Zap, RefreshCw, BarChart2, Users, FileText, Settings } from "lucide-react";
 import { Link } from "wouter";
+import PageSEO from "@/components/PageSEO";
 
 const naicsCodes = [
   { code: "541511", label: "Custom Computer Programming Services" },
@@ -94,6 +95,12 @@ const cardVariants = {
 export default function DigitalTransformation() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)" }}>
+      <PageSEO
+        title="Digital Transformation for Government | CRF Enterprise — NAICS 541511, 541519"
+        description="CRF Enterprise modernizes legacy government IT systems, automates processes, and delivers 21st Century IDEA-compliant citizen portals. SAM-registered, MWBE-certified. CAGE: 107F5. NAICS: 541511, 541519."
+        canonical="/services/digital-transformation"
+        breadcrumbs={[{ name: "Digital Transformation", item: "https://www.crfenterprise.com/services/digital-transformation" }]}
+      />
 
       <script
         type="application/ld+json"

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, Cloud, Server, Shield, GitBranch, Activity, Lock } from "lucide-react";
 import { Link } from "wouter";
+import PageSEO from "@/components/PageSEO";
 
 const naicsCodes = [
   { code: "236220", label: "Commercial and Institutional Building Construction" },
@@ -94,6 +95,12 @@ const cardVariants = {
 export default function Infrastructure() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)" }}>
+      <PageSEO
+        title="Infrastructure Development | CRF Enterprise — NAICS 236220, 237310, 541512"
+        description="CRF Enterprise designs FedRAMP-aligned cloud infrastructure, zero-trust network architecture, and physical civil infrastructure for federal and state government clients. CAGE: 107F5. NAICS: 541512, 236220, 237310."
+        canonical="/services/infrastructure"
+        breadcrumbs={[{ name: "Infrastructure", item: "https://www.crfenterprise.com/services/infrastructure" }]}
+      />
 
       <script
         type="application/ld+json"

@@ -1,9 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight, ArrowLeft, CheckCircle, Loader2, AlertCircle,
-  Building2, User, Mail, Phone, Briefcase, MessageSquare, Shield
+  Building2, User, Mail, Phone, Briefcase, MessageSquare, Shield, RotateCcw
 } from "lucide-react";
+
+const DRAFT_KEY = "crf_contact_draft_v1";
+
+function saveDraft(data: WizardData, step: number) {
+  try {
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ data, step }));
+  } catch { /* ignore */ }
+}
+
+function loadDraft(): { data: WizardData; step: number } | null {
+  try {
+    const raw = sessionStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
+function clearDraft() {
+  try { sessionStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
 
 type BuyerType = "federal" | "state-local" | "enterprise" | "partner" | "";
 
@@ -150,21 +174,31 @@ const slideVariants = {
 };
 
 export default function ContactFormWizard() {
-  const [step, setStep] = useState(1);
+  // Restore draft from sessionStorage on mount
+  const draft = loadDraft();
+  const [step, setStep] = useState(draft?.step ?? 1);
   const [dir, setDir] = useState(1);
-  const [data, setData] = useState<WizardData>(initialData);
+  const [data, setData] = useState<WizardData>(draft?.data ?? initialData);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const [emailTouched, setEmailTouched] = useState(false);
 
-  const update = (fields: Partial<WizardData>) => setData(prev => ({ ...prev, ...fields }));
+  // Autosave to sessionStorage whenever data or step changes
+  useEffect(() => {
+    if (!submitted) saveDraft(data, step);
+  }, [data, step, submitted]);
+
+  const update = useCallback((fields: Partial<WizardData>) =>
+    setData(prev => ({ ...prev, ...fields })), []);
 
   const next = () => { setDir(1); setStep(s => Math.min(s + 1, TOTAL_STEPS)); };
   const prev = () => { setDir(-1); setStep(s => Math.max(s - 1, 1)); };
 
   const canAdvance = () => {
     if (step === 1) return !!data.buyerType;
-    if (step === 2) return !!(data.name && data.company && data.email);
+    if (step === 2) return !!(data.name && data.company && data.email && isValidEmail(data.email));
     if (step === 3) return !!(data.projectType);
     return true;
   };
@@ -187,9 +221,15 @@ export default function ContactFormWizard() {
       });
       const json = await response.json();
       if (!response.ok) throw new Error(json.error || "Failed to send");
+      clearDraft();
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      setError(retryCount < 2
+        ? `${msg} — you can retry below.`
+        : `${msg} Please email us directly at admin@crfenterprise.com`
+      );
+      setRetryCount(c => c + 1);
     } finally {
       setLoading(false);
     }
@@ -229,7 +269,7 @@ export default function ContactFormWizard() {
           ))}
         </div>
         <button
-          onClick={() => { setSubmitted(false); setStep(1); setData(initialData); }}
+          onClick={() => { clearDraft(); setSubmitted(false); setStep(1); setData(initialData); setRetryCount(0); setError(null); }}
           className="btn-secondary text-sm"
         >
           Submit Another Inquiry
@@ -326,9 +366,27 @@ export default function ContactFormWizard() {
                     Email <span aria-hidden="true" style={{ color: "var(--accent)" }}>*</span>
                   </label>
                   <div className="relative">
-                    <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: "var(--muted-foreground)" }} aria-hidden="true" />
-                    <input id="wiz-email" type="email" value={data.email} onChange={e => update({ email: e.target.value })} placeholder="you@agency.gov" className="field-input pl-9" autoComplete="email" required aria-required="true" />
+                    <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: emailTouched && !isValidEmail(data.email) ? "#ff6b6b" : "var(--muted-foreground)" }} aria-hidden="true" />
+                    <input
+                      id="wiz-email"
+                      type="email"
+                      value={data.email}
+                      onChange={e => update({ email: e.target.value })}
+                      onBlur={() => setEmailTouched(true)}
+                      placeholder="you@agency.gov"
+                      className="field-input pl-9"
+                      autoComplete="email"
+                      required
+                      aria-required="true"
+                      aria-describedby={emailTouched && data.email && !isValidEmail(data.email) ? "wiz-email-error" : undefined}
+                      style={{ borderColor: emailTouched && data.email && !isValidEmail(data.email) ? "rgba(255,59,59,0.5)" : undefined }}
+                    />
                   </div>
+                  {emailTouched && data.email && !isValidEmail(data.email) && (
+                    <p id="wiz-email-error" role="alert" className="mt-1 text-xs" style={{ color: "#ff6b6b" }}>
+                      Please enter a valid email address.
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" htmlFor="wiz-phone" style={{ color: "rgba(240,240,245,0.7)", fontFamily: "'Sora', sans-serif" }}>
@@ -492,11 +550,26 @@ export default function ContactFormWizard() {
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-4 flex items-center gap-2 p-3 rounded-lg text-xs"
-          style={{ background: "rgba(255,59,59,0.08)", border: "1px solid rgba(255,59,59,0.2)", color: "#ff6b6b" }}
+          className="mt-4 p-3 rounded-lg text-xs space-y-2"
+          style={{ background: "rgba(255,59,59,0.08)", border: "1px solid rgba(255,59,59,0.2)" }}
           role="alert"
         >
-          <AlertCircle size={13} aria-hidden="true" /> {error}
+          <div className="flex items-start gap-2" style={{ color: "#ff6b6b" }}>
+            <AlertCircle size={13} className="flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <span>{error}</span>
+          </div>
+          {retryCount < 3 && (
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={loading}
+              className="flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-100"
+              style={{ color: "#ff6b6b", opacity: 0.8 }}
+            >
+              <RotateCcw size={11} aria-hidden="true" />
+              Try again
+            </button>
+          )}
         </motion.div>
       )}
     </div>

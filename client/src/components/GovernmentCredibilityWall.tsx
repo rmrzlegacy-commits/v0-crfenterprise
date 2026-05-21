@@ -68,7 +68,7 @@ const itemVariants = {
 export default function GovernmentCredibilityWall() {
   return (
     <section
-      className="relative py-20 md:py-28 px-5 sm:px-8 lg:px-12"
+      className="relative section-alt py-20 md:py-28 px-5 sm:px-8 lg:px-12"
       aria-labelledby="credibility-heading"
       style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
@@ -88,10 +88,10 @@ export default function GovernmentCredibilityWall() {
           transition={{ duration: 0.65 }}
           className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="section-divider" />
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--accent)" }}>
-              Credentials & Compliance
+          <div className="flex items-center gap-2 mb-4">
+            <span className="status-dot" aria-hidden="true" />
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--accent)", fontFamily: "'Sora', sans-serif" }}>
+              Credentials &amp; Compliance — Active FY2026
             </span>
           </div>
           <h2
@@ -109,11 +109,12 @@ export default function GovernmentCredibilityWall() {
               Mission-Verified.
             </span>
           </h2>
-          <p className="text-base max-w-xl" style={{ color: "var(--muted-foreground)" }}>
+          <p className="text-base max-w-xl mb-6" style={{ color: "var(--muted-foreground)" }}>
             CRF Enterprise maintains all registrations, certifications, and compliance credentials required
             for federal, SLED, and enterprise procurement. Our documentation is current, auditable, and
             available to contracting officers on request.
           </p>
+          <div className="hr-rule" aria-hidden="true" />
         </motion.div>
 
         {/* Credential badges */}

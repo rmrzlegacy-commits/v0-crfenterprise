@@ -89,27 +89,29 @@ export default function CaseStudySection() {
           transition={{ duration: 0.65 }}
           className="mb-14"
         >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="section-divider" />
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--accent)" }}>
-              Past Performance
+          <div className="flex items-center gap-2 mb-4">
+            <span className="status-dot" aria-hidden="true" />
+            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--accent)", fontFamily: "'Sora', sans-serif" }}>
+              Past Performance — References Available
             </span>
           </div>
-          <h2 id="case-studies-heading" className="text-balance mb-4 max-w-2xl" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Proven Results Across{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #00c8f0, #0090c8)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              Government & Enterprise
-            </span>
-          </h2>
-          <p className="text-base max-w-xl" style={{ color: "var(--muted-foreground)" }}>
-            Representative engagements demonstrating CRF&apos;s delivery capability across federal,
-            state, and enterprise environments. Detailed past performance references available on request.
-          </p>
+          <div className="section-header-row mb-0">
+            <h2 id="case-studies-heading" className="text-balance max-w-2xl" style={{ fontFamily: "'Sora', sans-serif" }}>
+              Proven Results Across{" "}
+              <span style={{
+                background: "linear-gradient(135deg, #00c8f0, #0090c8)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>
+                Government & Enterprise
+              </span>
+            </h2>
+            <p className="text-sm max-w-xs self-end shrink-0" style={{ color: "var(--muted-foreground)" }}>
+              Representative engagements. Detailed past performance references available on request.
+            </p>
+          </div>
+          <div className="hr-rule" aria-hidden="true" />
         </motion.div>
 
         <motion.div
@@ -202,7 +204,7 @@ export default function CaseStudySection() {
                       style={{ background: "rgba(0,200,240,0.04)" }}
                     >
                       <Icon size={14} style={{ color: "var(--accent)" }} aria-hidden="true" />
-                      <div className="text-lg font-black" style={{ fontFamily: "'Sora', sans-serif", color: "var(--foreground)", letterSpacing: "-0.02em" }}>
+                      <div className="metric-number text-xl">
                         {value}
                       </div>
                       <div className="text-xs leading-tight" style={{ color: "var(--muted-foreground)" }}>

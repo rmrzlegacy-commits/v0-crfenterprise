@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, Shield, Code2, Cpu, Database, Lock, Layers } from "lucide-react";
 import { Link } from "wouter";
+import PageSEO from "@/components/PageSEO";
 
 const naicsCodes = [
   { code: "541511", label: "Custom Computer Programming Services" },
@@ -94,6 +95,12 @@ const cardVariants = {
 export default function EnterpriseTechnology() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)" }}>
+      <PageSEO
+        title="Enterprise Technology Solutions | CRF Enterprise — NAICS 541511, 541512"
+        description="CRF Enterprise delivers custom software development, legacy modernization, FedRAMP-aligned cloud architecture, and ATO support for federal agencies and enterprise clients. CAGE: 107F5. NAICS: 541511, 541512, 541519."
+        canonical="/services/enterprise-technology"
+        breadcrumbs={[{ name: "Enterprise Technology", item: "https://www.crfenterprise.com/services/enterprise-technology" }]}
+      />
 
       {/* JSON-LD: Service Schema */}
       <script

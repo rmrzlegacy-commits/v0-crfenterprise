@@ -4,10 +4,10 @@ import { ArrowRight, ChevronDown, Shield, Zap, Globe } from "lucide-react";
 import { Link } from "wouter";
 
 const stats = [
-  { value: "100%", label: "SAM Registered" },
-  { value: "CAGE", label: "Code: 107F5" },
-  { value: "MWBE", label: "Certified" },
-  { value: "FY26", label: "Active" },
+  { value: "SAM Registered", label: "Active FY2026", href: "https://sam.gov", external: true },
+  { value: "CAGE: 107F5", label: "DoD/Fed Identifier", href: "https://sam.gov", external: true },
+  { value: "MWBE", label: "Certified", href: "/company/about", external: false },
+  { value: "(702) 356-3226", label: "Direct Line", href: "tel:+17023563226", external: false },
 ];
 
 const trustBadges = [
@@ -61,6 +61,9 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       aria-label="Hero section"
     >
+      {/* Precision corner brackets — restrained futurism signature */}
+      <div className="corner-mark corner-mark-tl" aria-hidden="true" />
+      <div className="corner-mark corner-mark-br" aria-hidden="true" />
       {/* Background layers */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
         {/* Hero background image */}
@@ -208,15 +211,21 @@ export default function Hero() {
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">
             {stats.map((stat, i) => (
-              <div
+              <a
                 key={stat.label}
-                className="flex flex-col items-center text-center"
+                href={stat.href}
+                target={stat.external ? "_blank" : undefined}
+                rel={stat.external ? "noopener noreferrer" : undefined}
+                className="flex flex-col items-center text-center transition-opacity hover:opacity-100 group"
                 style={{
                   borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                  opacity: 0.9,
+                  textDecoration: "none",
                 }}
+                aria-label={`${stat.value} — ${stat.label}`}
               >
                 <span
-                  className="text-lg font-black mb-0.5"
+                  className="text-base md:text-lg font-black mb-0.5 group-hover:opacity-100 transition-all"
                   style={{
                     fontFamily: "'Sora', sans-serif",
                     background: "linear-gradient(135deg, #00c8f0, #0090c8)",
@@ -228,7 +237,7 @@ export default function Hero() {
                   {stat.value}
                 </span>
                 <span className="text-xs font-medium text-muted-foreground">{stat.label}</span>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -240,9 +249,9 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
         onClick={scrollDown}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-foreground/30 hover:text-accent transition-colors"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 transition-colors"
         aria-label="Scroll down"
-        style={{ display: "none" }}
+        style={{ color: "rgba(240,240,245,0.28)" }}
       >
         <span className="text-xs font-medium tracking-widest uppercase" style={{ fontSize: "0.625rem" }}>Scroll</span>
         <motion.div

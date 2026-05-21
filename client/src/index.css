@@ -47,6 +47,8 @@
   /* Surfaces */
   --surface: rgba(255, 255, 255, 0.04);
   --surface-raised: rgba(255, 255, 255, 0.07);
+  /* Alternating section surface — barely-there lift so sections read as distinct chapters */
+  --surface-alt: rgba(255, 255, 255, 0.022);
   --card: rgba(255, 255, 255, 0.04);
   --card-foreground: #f0f0f5;
   --popover: #0d0d12;
@@ -415,6 +417,85 @@
 
   .safe-top {
     padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* ---- Alternating section background ---- */
+  /* Apply to every other section so the page reads as distinct chapters, not one flat wall */
+  .section-alt {
+    background: var(--surface-alt);
+  }
+
+  /* ---- Full-width hairline rule ---- */
+  /* Replaces the short 48px divider pill in section headers for a more editorial feel */
+  .hr-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .hr-rule::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ---- Corner bracket decoration (Cult Holdings / precision aesthetic) ---- */
+  .corner-mark {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+
+  .corner-mark-tl {
+    top: 12px;
+    left: 12px;
+    border-top: 1.5px solid rgba(0, 200, 240, 0.35);
+    border-left: 1.5px solid rgba(0, 200, 240, 0.35);
+  }
+
+  .corner-mark-br {
+    bottom: 12px;
+    right: 12px;
+    border-bottom: 1.5px solid rgba(0, 200, 240, 0.35);
+    border-right: 1.5px solid rgba(0, 200, 240, 0.35);
+  }
+
+  /* ---- Oversized metric number (Palantir / Linear style) ---- */
+  .metric-number {
+    font-family: 'Sora', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--foreground);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- Status dot (active/live indicator) ---- */
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00c8f0;
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  /* ---- Section heading alignment utility ---- */
+  .section-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
   /* ---- Card depth / 3D hover ---- */

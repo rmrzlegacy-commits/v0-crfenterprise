@@ -1,67 +1,85 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Route, Switch } from "wouter";
-import CertificationsHeader from "./components/CertificationsHeader";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CertificationsHeader from "./components/CertificationsHeader";
+import LeadMagnetModal from "./components/LeadMagnetModal";
 
-// Home
+// ── Critical path: Home loads eagerly ──────────────────────────────────────
 import Home from "./pages/Home";
 
-// Services
-import EnterpriseTechnology from "./pages/Services/EnterpriseTechnology";
-import Infrastructure from "./pages/Services/Infrastructure";
-import DigitalTransformation from "./pages/Services/DigitalTransformation";
-import Consulting from "./pages/Services/Consulting";
+// ── All sub-pages lazy-loaded to reduce initial bundle ─────────────────────
+const EnterpriseTechnology   = lazy(() => import("./pages/Services/EnterpriseTechnology"));
+const Infrastructure         = lazy(() => import("./pages/Services/Infrastructure"));
+const DigitalTransformation  = lazy(() => import("./pages/Services/DigitalTransformation"));
+const Consulting             = lazy(() => import("./pages/Services/Consulting"));
 
-// Company
-import AboutUs from "./pages/Company/AboutUs";
-import Careers from "./pages/Company/Careers";
-import Blog from "./pages/Company/Blog";
-import Press from "./pages/Company/Press";
+const AboutUs                = lazy(() => import("./pages/Company/AboutUs"));
+const Careers                = lazy(() => import("./pages/Company/Careers"));
+const Blog                   = lazy(() => import("./pages/Company/Blog"));
+const Press                  = lazy(() => import("./pages/Company/Press"));
 
-// Legal
-import TermsOfService from "./pages/Legal/TermsOfService";
-import Security from "./pages/Legal/Security";
-import Compliance from "./pages/Legal/Compliance";
+const TermsOfService         = lazy(() => import("./pages/Legal/TermsOfService"));
+const Security               = lazy(() => import("./pages/Legal/Security"));
+const Compliance             = lazy(() => import("./pages/Legal/Compliance"));
 
-// Procurement
-import ProcurementGuide from "./pages/Procurement/Guide";
+const ProcurementGuide       = lazy(() => import("./pages/Procurement/Guide"));
+const NotFound               = lazy(() => import("./pages/NotFound"));
 
-import NotFound from "./pages/NotFound";
-import LeadMagnetModal from "./components/LeadMagnetModal";
+// ── Minimal skeleton shown while lazy chunks load ──────────────────────────
+function PageSkeleton() {
+  return (
+    <div
+      className="flex items-center justify-center min-h-[60vh]"
+      aria-label="Loading page"
+      role="status"
+    >
+      <div className="flex flex-col items-center gap-3">
+        <div
+          className="w-8 h-8 rounded-full border-2 animate-spin"
+          style={{ borderColor: "rgba(0,200,240,0.3)", borderTopColor: "#00c8f0" }}
+        />
+        <span className="text-xs text-muted-foreground">Loading…</span>
+      </div>
+    </div>
+  );
+}
 
 function Router() {
   return (
-    <Switch>
-      {/* Home */}
-      <Route path="/" component={Home} />
+    <Suspense fallback={<PageSkeleton />}>
+      <Switch>
+        {/* Home — eager */}
+        <Route path="/" component={Home} />
 
-      {/* Services */}
-      <Route path="/services/enterprise-technology" component={EnterpriseTechnology} />
-      <Route path="/services/infrastructure" component={Infrastructure} />
-      <Route path="/services/digital-transformation" component={DigitalTransformation} />
-      <Route path="/services/consulting" component={Consulting} />
+        {/* Services */}
+        <Route path="/services/enterprise-technology" component={EnterpriseTechnology} />
+        <Route path="/services/infrastructure" component={Infrastructure} />
+        <Route path="/services/digital-transformation" component={DigitalTransformation} />
+        <Route path="/services/consulting" component={Consulting} />
 
-      {/* Company */}
-      <Route path="/company/about" component={AboutUs} />
-      <Route path="/company/careers" component={Careers} />
-      <Route path="/company/blog" component={Blog} />
-      <Route path="/company/press" component={Press} />
+        {/* Company */}
+        <Route path="/company/about" component={AboutUs} />
+        <Route path="/company/careers" component={Careers} />
+        <Route path="/company/blog" component={Blog} />
+        <Route path="/company/press" component={Press} />
 
-      {/* Legal */}
-      <Route path="/legal/terms" component={TermsOfService} />
-      <Route path="/legal/security" component={Security} />
-      <Route path="/legal/compliance" component={Compliance} />
+        {/* Legal */}
+        <Route path="/legal/terms" component={TermsOfService} />
+        <Route path="/legal/security" component={Security} />
+        <Route path="/legal/compliance" component={Compliance} />
 
-      {/* Procurement */}
-      <Route path="/procurement/guide" component={ProcurementGuide} />
+        {/* Procurement */}
+        <Route path="/procurement/guide" component={ProcurementGuide} />
 
-      {/* 404 */}
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+        {/* 404 */}
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
@@ -72,9 +90,17 @@ function App() {
         <Toaster />
         <LeadMagnetModal />
         <div className="bg-background text-foreground min-h-screen flex flex-col">
+          {/* Skip-to-content link for keyboard/screen-reader users */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus:text-sm"
+            style={{ background: "var(--accent)", color: "#000" }}
+          >
+            Skip to main content
+          </a>
           <Navbar />
           <CertificationsHeader />
-          <main className="flex-1">
+          <main className="flex-1" id="main-content" tabIndex={-1}>
             <Router />
           </main>
           <Footer />

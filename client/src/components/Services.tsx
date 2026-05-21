@@ -91,33 +91,34 @@ export default function Services() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="mb-16 md:mb-20"
         >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="section-divider" />
-            <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--accent)" }}>
-              Our Solutions
-            </span>
+          <div className="section-header-row">
+            <div>
+              <span className="text-xs font-semibold tracking-widest uppercase block mb-3" style={{ color: "var(--accent)", fontFamily: "'Sora', sans-serif" }}>
+                Our Solutions
+              </span>
+              <h2
+                id="services-heading"
+                className="text-balance"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                Capabilities Built for{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #00c8f0, #0090c8)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Mission Success
+                </span>
+              </h2>
+            </div>
+            <p className="text-base max-w-xs shrink-0 self-end" style={{ color: "var(--muted-foreground)" }}>
+              Federal-grade technology and infrastructure services for agencies and enterprise clients.
+            </p>
           </div>
-          <h2
-            id="services-heading"
-            className="text-balance mb-4 max-w-2xl"
-            style={{ fontFamily: "'Sora', sans-serif" }}
-          >
-            Capabilities Built for{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #00c8f0, #0090c8)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Mission Success
-            </span>
-          </h2>
-          <p className="text-lg max-w-xl" style={{ color: "var(--muted-foreground)" }}>
-            Comprehensive services designed to accelerate your digital transformation
-            and ensure mission-critical success at every stage.
-          </p>
+          <div className="hr-rule" aria-hidden="true" />
         </motion.div>
 
         {/* Services grid */}
@@ -137,6 +138,12 @@ export default function Services() {
                 className="group relative glass-card card-depth p-6 md:p-7 flex flex-col cursor-pointer"
                 style={{ minHeight: "220px" }}
               >
+                {index === 0 && (
+                  <>
+                    <div className="corner-mark corner-mark-tl" aria-hidden="true" />
+                    <div className="corner-mark corner-mark-br" aria-hidden="true" />
+                  </>
+                )}
                 {/* Tag */}
                 <span
                   className="absolute top-5 right-5 text-xs font-semibold px-2 py-0.5 rounded-full"

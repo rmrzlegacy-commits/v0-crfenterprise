@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, TrendingUp, BookOpen, ShieldCheck, Search, FileCheck, Users } from "lucide-react";
 import { Link } from "wouter";
+import PageSEO from "@/components/PageSEO";
 
 const naicsCodes = [
   { code: "541611", label: "Administrative Management and General Consulting" },
@@ -94,6 +95,12 @@ const cardVariants = {
 export default function Consulting() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)" }}>
+      <PageSEO
+        title="Strategic Technology Consulting | CRF Enterprise — NAICS 541611, 541690"
+        description="CRF Enterprise delivers technology strategy, IT capital planning, enterprise architecture, compliance advisory, and federal acquisition support for government and enterprise clients. CAGE: 107F5. NAICS: 541611, 541690."
+        canonical="/services/consulting"
+        breadcrumbs={[{ name: "Consulting", item: "https://www.crfenterprise.com/services/consulting" }]}
+      />
 
       <script
         type="application/ld+json"
