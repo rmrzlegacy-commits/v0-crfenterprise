@@ -127,3 +127,30 @@
 [2026-05-21T15:01:52.998Z] {"timestamp":1779375708085,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-05-21T15:03:55.015Z] {"timestamp":1779375830104,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
 [2026-05-21T15:03:55.015Z] {"timestamp":1779375830104,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Contact.tsx"],"stack":null}
+[2026-05-21T15:15:09.839Z] {"timestamp":1779376504584,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-21T15:15:09.839Z] {"timestamp":1779376505034,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-21T15:15:13.115Z] {"timestamp":1779376507909,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-21T15:15:13.115Z] {"timestamp":1779376508213,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-21T15:15:18.137Z] {"timestamp":1779376512912,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-21T15:15:18.137Z] {"timestamp":1779376514483,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-21T15:20:57.067Z] {"timestamp":1779376851787,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-21T15:25:39.191Z] {"timestamp":1779377135027,"level":"WARN","args":["'oklab(0.815954 -0.116777 -0.0864277 / 0.4)' is not an animatable color. Use the equivalent color code instead.. For more information and steps for solving, visit https://motion.dev/troubleshooting/color-not-animatable"],"stack":null}
+[2026-05-21T15:26:07.449Z] {"timestamp":1779377162151,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-05-21T15:26:07.449Z] {"timestamp":1779377162613,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-05-21T15:27:05.438Z] {"timestamp":1779377221050,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:28:01.578Z] {"timestamp":1779377276271,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Navbar.tsx"],"stack":null}
+[2026-05-21T15:28:01.578Z] {"timestamp":1779377276271,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:28:43.562Z] {"timestamp":1779377319187,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:28:43.563Z] {"timestamp":1779377319187,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Hero.tsx"],"stack":null}
+[2026-05-21T15:28:59.517Z] {"timestamp":1779377334466,"level":"DEBUG","args":["[vite]","hot updated: /src/components/CertificationsHeader.tsx"],"stack":null}
+[2026-05-21T15:28:59.517Z] {"timestamp":1779377334466,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:29:33.488Z] {"timestamp":1779377369682,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:29:33.488Z] {"timestamp":1779377369682,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Services.tsx"],"stack":null}
+[2026-05-21T15:30:05.540Z] {"timestamp":1779377401029,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:30:05.540Z] {"timestamp":1779377401029,"level":"DEBUG","args":["[vite]","hot updated: /src/components/About.tsx"],"stack":null}
+[2026-05-21T15:30:59.429Z] {"timestamp":1779377455887,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:30:59.429Z] {"timestamp":1779377455887,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Contact.tsx"],"stack":null}
+[2026-05-21T15:31:31.583Z] {"timestamp":1779377486680,"level":"DEBUG","args":["[vite]","hot updated: /src/components/LeadMagnetModal.tsx"],"stack":null}
+[2026-05-21T15:31:31.583Z] {"timestamp":1779377486680,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
+[2026-05-21T15:32:11.512Z] {"timestamp":1779377526257,"level":"DEBUG","args":["[vite]","hot updated: /src/components/Footer.tsx"],"stack":null}
+[2026-05-21T15:32:11.512Z] {"timestamp":1779377526257,"level":"DEBUG","args":["[vite]","hot updated: /src/index.css"],"stack":null}
