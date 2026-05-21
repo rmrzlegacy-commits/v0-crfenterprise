@@ -1,0 +1,12 @@
+# CRF Enterprise — robots.txt
+# https://www.crfenterprise.com
+
+User-agent: *
+Allow: /
+
+# Block internal/debug paths
+Disallow: /__manus__/
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://www.crfenterprise.com/sitemap.xml

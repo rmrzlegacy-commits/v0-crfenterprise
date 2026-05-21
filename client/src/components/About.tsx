@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
-import { CheckCircle, Award, Users, Briefcase } from "lucide-react";
+import { CheckCircle, Award, Users, Briefcase, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 const values = [
-  "Security-first architecture",
-  "Government compliance ready",
-  "Enterprise-grade reliability",
-  "Innovation-driven development",
-  "24/7 mission support",
-  "Transparent partnerships",
+  "Security-first architecture on every engagement",
+  "FISMA, FedRAMP, and NIST RMF compliant delivery",
+  "Agile and DevSecOps delivery methodology",
+  "Active SAM.gov registration — CAGE Code 107F5",
+  "MWBE certified — small business set-aside eligible",
+  "Prime and subcontract performance capability",
+  "Reps & Certs available on request",
+  "24/7 mission-critical system support",
 ];
 
 const metrics = [
@@ -67,17 +70,24 @@ export default function About() {
               </span>
             </h2>
 
-            <p className="text-base md:text-lg leading-relaxed mb-5" style={{ color: "rgba(240,240,245,0.72)" }}>
-              CRF Enterprise is a mission-driven development team delivering secure,
-              innovative software solutions for government agencies and enterprise
-              clients. We understand the complexity of mission-critical operations
-              and build systems that can be trusted.
+            <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: "rgba(240,240,245,0.72)" }}>
+              CRF Enterprise, LLC is a Las Vegas, Nevada-based government and enterprise technology
+              contractor. We deliver secure, scalable software systems, digital and physical
+              infrastructure, and strategic consulting for federal agencies, state and local
+              governments, and enterprise clients.
             </p>
 
-            <p className="text-base md:text-lg leading-relaxed mb-10" style={{ color: "rgba(240,240,245,0.6)" }}>
-              With deep expertise in federal procurement, compliance frameworks,
-              and enterprise infrastructure, we accelerate your path to modern,
-              secure, and scalable technology.
+            <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(240,240,245,0.6)" }}>
+              We are registered in SAM.gov with an active registration (CAGE Code: 107F5) and
+              maintain MWBE certification, qualifying us for relevant small business set-aside
+              programs. Our work spans NAICS codes 541511, 541512, 541519, 541611, 236220, and
+              237310, giving us broad capability across technology services and construction.
+            </p>
+
+            <p className="text-base leading-relaxed mb-10" style={{ color: "rgba(240,240,245,0.5)" }}>
+              Every engagement is delivered under Agile and DevSecOps methodologies, with compliance
+              to NIST RMF, FISMA, and agency-specific security requirements built in from day one.
+              We serve as long-term technology partners — not transactional vendors.
             </p>
 
             {/* Values checklist */}
@@ -88,16 +98,16 @@ export default function About() {
                   initial={{ opacity: 0, x: -12 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
                   className="flex items-start gap-2.5"
                 >
                   <CheckCircle
-                    size={16}
+                    size={15}
                     className="flex-shrink-0 mt-0.5"
                     style={{ color: "var(--accent)" }}
                     aria-hidden="true"
                   />
-                  <span className="text-sm font-medium" style={{ color: "rgba(240,240,245,0.75)" }}>
+                  <span className="text-sm font-medium" style={{ color: "rgba(240,240,245,0.72)" }}>
                     {value}
                   </span>
                 </motion.div>
@@ -105,7 +115,7 @@ export default function About() {
             </div>
 
             {/* Metrics row */}
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap gap-4 mb-8">
               {metrics.map(({ icon: Icon, value, label }) => (
                 <div
                   key={label}
@@ -127,6 +137,21 @@ export default function About() {
                 </div>
               ))}
             </div>
+
+            {/* Agency CTA */}
+            <div className="flex flex-wrap gap-3">
+              <Link href="/#contact">
+                <span className="btn-primary text-sm cursor-pointer">
+                  Request Capability Statement
+                  <ArrowRight size={15} />
+                </span>
+              </Link>
+              <Link href="/company/about">
+                <span className="btn-secondary text-sm cursor-pointer">
+                  Learn More About Us
+                </span>
+              </Link>
+            </div>
           </motion.div>
 
           {/* Right: image */}
@@ -146,9 +171,11 @@ export default function About() {
             >
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663588331226/9rwrd5b3JWkLz6fuZoAJon/crf-about-1-L4iRsUysD3GLpXjgM8p97e.webp"
-                alt="CRF Enterprise infrastructure and operations team"
+                alt="CRF Enterprise government and enterprise technology operations"
                 className="w-full h-full object-cover"
                 loading="lazy"
+                width="640"
+                height="480"
               />
               {/* Overlay gradient */}
               <div
@@ -176,8 +203,10 @@ export default function About() {
                 <Award size={18} style={{ color: "#d4af37" }} aria-hidden="true" />
               </div>
               <div>
-                <div className="text-sm font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#d4af37" }}>CAGE: 107F5</div>
-                <div className="text-xs" style={{ color: "rgba(212,175,55,0.6)" }}>SAM Registered</div>
+                <div className="text-sm font-bold" style={{ fontFamily: "'Sora', sans-serif", color: "#d4af37" }}>
+                  CAGE: 107F5
+                </div>
+                <div className="text-xs" style={{ color: "rgba(212,175,55,0.6)" }}>SAM Registered · MWBE</div>
               </div>
             </motion.div>
           </motion.div>
