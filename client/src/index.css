@@ -326,6 +326,16 @@
     transform: translateY(0) scale(0.98);
   }
 
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -351,20 +361,50 @@
     transform: translateY(-1px);
   }
 
+  .btn-secondary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   /* ---- Input ---- */
-  .field-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: var(--input);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    color: var(--foreground);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
-    line-height: 1.5;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    outline: none;
-    min-height: 48px;
+  > .field-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  min-height: 48px;
+  }
+  
+  > .field-input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+  }
+  
+  > .field-input:focus {
+  border-color: rgba(0, 200, 240, 0.6);
+  background: rgba(0, 200, 240, 0.03);
+  box-shadow: 0 0 0 4px rgba(0, 200, 240, 0.15), 0 0 12px rgba(0, 200, 240, 0.08);
+  }
+  
+  > .field-input:invalid:not(:placeholder-shown) {
+  border-color: rgba(255, 59, 59, 0.6);
+  background: rgba(255, 59, 59, 0.02);
+  }
+  
+  > .field-input:invalid:not(:placeholder-shown):focus {
+  box-shadow: 0 0 0 4px rgba(255, 59, 59, 0.12), 0 0 12px rgba(255, 59, 59, 0.06);
   }
 
   .field-input::placeholder {

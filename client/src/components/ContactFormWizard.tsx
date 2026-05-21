@@ -144,25 +144,39 @@ const timelines = [
 const TOTAL_STEPS = 4;
 
 function ProgressBar({ step }: { step: number }) {
+  const stepLabels = ["What", "Contact", "Details", "Message", "Confirm"];
   return (
-    <div className="flex items-center gap-2 mb-8">
-      {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-        <div key={i} className="flex-1 relative">
-          <div
-            className="h-1 rounded-full transition-all duration-500"
-            style={{
-              background: i < step
-                ? "var(--accent)"
-                : i === step - 1
-                ? "var(--accent)"
-                : "rgba(255,255,255,0.1)",
-            }}
-          />
-        </div>
-      ))}
-      <span className="text-xs font-semibold ml-1 tabular-nums" style={{ color: "var(--muted-foreground)", fontFamily: "'Sora', sans-serif" }}>
-        {step}/{TOTAL_STEPS}
-      </span>
+    <div className="mb-10">
+      {/* Main progress bar */}
+      <div className="flex items-center gap-2 mb-5">
+        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+          <div key={i} className="flex-1 relative">
+            <div
+              className="h-1.5 rounded-full transition-all duration-500"
+              style={{
+                background: i < step
+                  ? "var(--accent)"
+                  : i === step - 1
+                  ? "var(--accent)"
+                  : "rgba(255,255,255,0.08)",
+              }}
+            />
+          </div>
+        ))}
+        <span className="text-xs font-semibold ml-2 tabular-nums shrink-0" style={{ color: "var(--muted-foreground)", fontFamily: "'Sora', sans-serif" }}>
+          {step}/{TOTAL_STEPS}
+        </span>
+      </div>
+      
+      {/* Step label */}
+      <div className="flex items-baseline gap-2">
+        <span className="text-xs uppercase tracking-widest font-semibold" style={{ color: "var(--accent)", fontFamily: "'Sora', sans-serif" }}>
+          Step {step}
+        </span>
+        <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+          {stepLabels[step - 1]}
+        </span>
+      </div>
     </div>
   );
 }
