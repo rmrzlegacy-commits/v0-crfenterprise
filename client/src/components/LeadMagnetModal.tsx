@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Mail } from "lucide-react";
+import { X, Mail, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 
 export default function LeadMagnetModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    // Check if modal has been shown in this session
     const modalShown = sessionStorage.getItem("leadMagnetShown");
-    if (modalShown) {
-      setHasShown(true);
-      return;
-    }
+    if (modalShown) { setHasShown(true); return; }
 
-    // Detect exit intent (mouse leaving viewport at top)
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !hasShown && !isOpen) {
         setIsOpen(true);
@@ -29,151 +25,189 @@ export default function LeadMagnetModal() {
     return () => document.removeEventListener("mouseleave", handleMouseLeave);
   }, [hasShown, isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      // Here you would send the email to your backend
-      console.log("Lead captured:", email);
-      setSubmitted(true);
-      
-      // Close modal after 2 seconds
-      setTimeout(() => {
-        setIsOpen(false);
-        setSubmitted(false);
-        setEmail("");
-      }, 2000);
+    if (!email) return;
+    setLoading(true);
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Newsletter Subscriber",
+          company: "N/A",
+          email,
+          phone: "",
+          projectType: "Newsletter",
+          message: "Newsletter subscription request from exit-intent modal.",
+        }),
+      });
+    } catch {
+      // Silent fail — still show success
     }
+
+    setLoading(false);
+    setSubmitted(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setSubmitted(false);
+      setEmail("");
+    }, 3000);
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: "rgba(0, 0, 0, 0.7)" }}
-          onClick={() => setIsOpen(false)}
-        >
+        <>
+          {/* Backdrop */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50"
+            style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(4px)" }}
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Modal */}
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0, scale: 0.94, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-            className="relative max-w-md w-full rounded-2xl p-8"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              backdropFilter: "blur(20px)",
-            }}
-            onClick={(e) => e.stopPropagation()}
+            exit={{ opacity: 0, scale: 0.94, y: 16 }}
+            transition={{ type: "spring", stiffness: 300, damping: 28 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-5"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="lead-modal-title"
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-2 hover:bg-accent/20 rounded-lg transition-colors"
+            <div
+              className="relative w-full max-w-md rounded-2xl p-7 sm:p-8"
+              style={{
+                background: "rgba(10,10,16,0.98)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 1px rgba(0,200,240,0.1)",
+              }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <X size={20} className="text-foreground/60" />
-            </button>
+              {/* Close */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg transition-colors hover:bg-white/5"
+                style={{ color: "var(--muted-foreground)" }}
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
 
-            {!submitted ? (
-              <>
-                {/* Icon */}
-                <div className="mb-6 flex justify-center">
-                  <div className="p-4 bg-accent/20 rounded-xl">
-                    <Mail className="text-accent" size={32} />
-                  </div>
-                </div>
-
-                {/* Heading */}
-                <h2 className="text-2xl font-bold text-foreground mb-2 text-center font-display">
-                  Get Monthly Government Procurement Tips
-                </h2>
-
-                {/* Subheading */}
-                <p className="text-foreground/70 text-center mb-6">
-                  Join government contractors and agencies receiving exclusive insider tips on winning federal contracts, compliance updates, and procurement strategies.
-                </p>
-
-                {/* Benefits */}
-                <div className="space-y-3 mb-8">
-                  <div className="flex gap-3 items-start">
-                    <div className="text-accent mt-1">✓</div>
-                    <p className="text-foreground/80 text-sm">Monthly government procurement insights</p>
-                  </div>
-                  <div className="flex gap-3 items-start">
-                    <div className="text-accent mt-1">✓</div>
-                    <p className="text-foreground/80 text-sm">Compliance updates and best practices</p>
-                  </div>
-                  <div className="flex gap-3 items-start">
-                    <div className="text-accent mt-1">✓</div>
-                    <p className="text-foreground/80 text-sm">Unsubscribe anytime—no spam, just value</p>
-                  </div>
-                </div>
-
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground/80 mb-2">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3 text-foreground/40" size={18} />
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your@email.com"
-                        required
-                        className="w-full pl-10 pr-4 py-3 rounded-lg text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent transition-all"
-                        style={{
-                          background: "rgba(255, 255, 255, 0.08)",
-                          border: "1px solid rgba(255, 255, 255, 0.15)",
-                        }}
-                      />
+              <AnimatePresence mode="wait">
+                {!submitted ? (
+                  <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 flex items-center justify-center rounded-xl mb-5"
+                      style={{ background: "rgba(0,200,240,0.1)", border: "1px solid rgba(0,200,240,0.2)" }}
+                    >
+                      <Mail size={22} style={{ color: "var(--accent)" }} />
                     </div>
-                  </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-all transform hover:scale-105 active:scale-95"
-                  >
-                    Subscribe Now
-                  </button>
-                </form>
+                    <h2
+                      id="lead-modal-title"
+                      className="text-xl font-bold mb-2"
+                      style={{ fontFamily: "'Sora', sans-serif" }}
+                    >
+                      Government Procurement Insights
+                    </h2>
+                    <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)", lineHeight: 1.7 }}>
+                      Join contractors and agencies receiving monthly tips on winning
+                      federal contracts, compliance updates, and procurement strategies.
+                    </p>
 
-                {/* Privacy Note */}
-                <p className="text-xs text-foreground/50 text-center mt-4">
-                  We respect your privacy. Unsubscribe anytime.
-                </p>
-              </>
-            ) : (
-              <>
-                {/* Success State */}
-                <div className="text-center py-8">
+                    <ul className="space-y-2 mb-7">
+                      {[
+                        "Monthly procurement insights",
+                        "Compliance updates & best practices",
+                        "No spam — unsubscribe anytime",
+                      ].map((item) => (
+                        <li key={item} className="flex items-center gap-2 text-sm" style={{ color: "rgba(240,240,245,0.75)" }}>
+                          <CheckCircle size={14} style={{ color: "var(--accent)", flexShrink: 0 }} aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <form onSubmit={handleSubmit} className="space-y-3">
+                      <div className="relative">
+                        <Mail
+                          size={16}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                          style={{ color: "var(--muted-foreground)" }}
+                          aria-hidden="true"
+                        />
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="your@email.com"
+                          required
+                          autoComplete="email"
+                          className="field-input pl-10"
+                          aria-label="Email address"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="btn-primary w-full justify-center"
+                      >
+                        {loading ? (
+                          <><Loader2 size={16} className="animate-spin" aria-hidden="true" /> Subscribing...</>
+                        ) : (
+                          <>Subscribe Now <ArrowRight size={16} aria-hidden="true" /></>
+                        )}
+                      </button>
+                    </form>
+
+                    <p className="text-xs text-center mt-4" style={{ color: "var(--muted-foreground)" }}>
+                      We respect your privacy. Unsubscribe anytime.
+                    </p>
+                  </motion.div>
+                ) : (
                   <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="mb-4 flex justify-center"
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center text-center py-8 gap-4"
+                    role="alert"
+                    aria-live="polite"
                   >
-                    <div className="p-4 bg-accent/20 rounded-full">
-                      <div className="text-accent text-4xl">✓</div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                      className="w-16 h-16 flex items-center justify-center rounded-full"
+                      style={{ background: "rgba(0,200,240,0.1)", border: "1px solid rgba(0,200,240,0.2)" }}
+                    >
+                      <CheckCircle size={32} style={{ color: "var(--accent)" }} />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+                        Welcome to the List!
+                      </h3>
+                      <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                        You&apos;ll receive your first insights in the next newsletter.
+                      </p>
                     </div>
                   </motion.div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    Welcome to the List!
-                  </h3>
-                  <p className="text-foreground/70">
-                    Check your email for the first month's tips. You'll hear from us again next month.
-                  </p>
-                </div>
-              </>
-            )}
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
