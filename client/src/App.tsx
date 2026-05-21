@@ -26,6 +26,9 @@ import TermsOfService from "./pages/Legal/TermsOfService";
 import Security from "./pages/Legal/Security";
 import Compliance from "./pages/Legal/Compliance";
 
+// Procurement
+import ProcurementGuide from "./pages/Procurement/Guide";
+
 import NotFound from "./pages/NotFound";
 import LeadMagnetModal from "./components/LeadMagnetModal";
 
@@ -51,6 +54,9 @@ function Router() {
       <Route path="/legal/terms" component={TermsOfService} />
       <Route path="/legal/security" component={Security} />
       <Route path="/legal/compliance" component={Compliance} />
+
+      {/* Procurement */}
+      <Route path="/procurement/guide" component={ProcurementGuide} />
 
       {/* 404 */}
       <Route path="/404" component={NotFound} />

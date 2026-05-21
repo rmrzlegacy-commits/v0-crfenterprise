@@ -416,6 +416,67 @@
   .safe-top {
     padding-top: env(safe-area-inset-top, 0px);
   }
+
+  /* ---- Card depth / 3D hover ---- */
+  .card-depth {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card-depth:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,200,240,0.15), 0 4px 12px rgba(0,200,240,0.08);
+  }
+
+  /* ---- Shimmer loading skeleton ---- */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04) 25%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+  }
+
+  /* ---- Number counter glow ---- */
+  .stat-value {
+    font-family: 'Sora', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #00c8f0 0%, #0090c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(0,200,240,0.3));
+  }
+
+  /* ---- Sticky nav blur ---- */
+  .nav-blur {
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  /* ---- Keyword highlight ---- */
+  .keyword {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ---- Tag pill ---- */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: 'Sora', sans-serif;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(240,240,245,0.55);
+  }
 }
 
 /* ============================================================
@@ -444,6 +505,11 @@
 @keyframes shimmer {
   from { background-position: -200% center; }
   to { background-position: 200% center; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================================

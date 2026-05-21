@@ -16,6 +16,13 @@ const company = [
   { label: "Press", href: "/company/press" },
 ];
 
+const procurement = [
+  { label: "Procurement Guide", href: "/procurement/guide" },
+  { label: "Capability Statement", href: "/api/capability-statement" },
+  { label: "NAICS Codes", href: "/services/enterprise-technology" },
+  { label: "Contact Contracting Team", href: "/#contact" },
+];
+
 const legal = [
   { label: "Terms of Service", href: "/legal/terms" },
   { label: "Security", href: "/legal/security" },
@@ -95,7 +102,7 @@ export default function Footer() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+        className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10"
       >
         {/* Brand column */}
         <motion.div variants={itemVariants} className="sm:col-span-2 lg:col-span-1">
@@ -181,6 +188,24 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2.5">
             {company.map(({ label, href }) => (
+              <li key={href}>
+                <Link href={href}>
+                  <span className="text-sm transition-colors hover:text-accent cursor-pointer" style={{ color: "var(--muted-foreground)" }}>
+                    {label}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.nav>
+
+        {/* Procurement */}
+        <motion.nav variants={itemVariants} aria-label="Procurement links">
+          <h3 className="text-sm font-semibold mb-4" style={{ fontFamily: "'Sora', sans-serif", color: "var(--foreground)" }}>
+            Procurement
+          </h3>
+          <ul className="space-y-2.5">
+            {procurement.map(({ label, href }) => (
               <li key={href}>
                 <Link href={href}>
                   <span className="text-sm transition-colors hover:text-accent cursor-pointer" style={{ color: "var(--muted-foreground)" }}>

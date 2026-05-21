@@ -134,7 +134,7 @@ export default function Services() {
               <motion.article
                 key={index}
                 variants={cardVariants}
-                className="group relative glass-card p-6 md:p-7 flex flex-col cursor-pointer"
+                className="group relative glass-card card-depth p-6 md:p-7 flex flex-col cursor-pointer"
                 style={{ minHeight: "220px" }}
               >
                 {/* Tag */}
