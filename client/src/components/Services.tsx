@@ -69,9 +69,9 @@ const cardVariants = {
 export default function Services() {
   return (
     <section
-      id="services"
       className="relative py-24 md:py-32 px-5 sm:px-8 lg:px-12"
       aria-labelledby="services-heading"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >
       {/* Subtle background accent */}
       <div
@@ -159,15 +159,14 @@ export default function Services() {
 
                 {/* Icon */}
                 <div
-                  className="mb-5 w-11 h-11 flex items-center justify-center rounded-xl"
+                  className="mb-6 w-14 h-14 flex items-center justify-center rounded-xl group-hover:bg-accent/15 transition-colors"
                   style={{
-                    background: "rgba(0,200,240,0.08)",
-                    border: "1px solid rgba(0,200,240,0.15)",
-                    transition: "background 0.2s, border-color 0.2s",
+                    background: "rgba(0,200,240,0.12)",
+                    border: "1px solid rgba(0,200,240,0.2)",
                   }}
                 >
                   <Icon
-                    size={22}
+                    size={28}
                     style={{ color: "var(--accent)" }}
                     aria-hidden="true"
                   />

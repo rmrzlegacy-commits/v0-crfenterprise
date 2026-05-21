@@ -59,7 +59,7 @@ const differentiators = [
 export default function EnterpriseROISection() {
   return (
     <section
-      className="relative section-alt py-20 md:py-28 px-5 sm:px-8 lg:px-12"
+      className="relative section-alt py-24 md:py-32 px-5 sm:px-8 lg:px-12"
       aria-labelledby="roi-heading"
       style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >

@@ -69,7 +69,7 @@ const cardVariants = {
 export default function CaseStudySection() {
   return (
     <section
-      className="relative py-20 md:py-28 px-5 sm:px-8 lg:px-12"
+      className="relative py-24 md:py-32 px-5 sm:px-8 lg:px-12"
       aria-labelledby="case-studies-heading"
       style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
     >

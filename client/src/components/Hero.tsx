@@ -148,9 +148,8 @@ export default function Hero() {
           className="text-pretty max-w-2xl text-lg md:text-xl leading-relaxed mb-10"
           style={{ color: "rgba(240,240,245,0.72)" }}
         >
-          Secure digital infrastructure, automation systems, and scalable technology
-          solutions built for organizations that cannot afford downtime. SAM-registered,
-          MWBE-certified, and contract-ready.
+          Secure infrastructure, software, and consulting for mission-critical government
+          operations. SAM-registered, MWBE-certified, contract-ready.
         </motion.p>
 
         {/* CTA row */}
